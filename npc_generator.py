@@ -6,6 +6,8 @@ import math
 repeat_blur = 5
 
 imagePath = sys.argv[1]
+outputImagePath = sys.argv[2]
+
 face_cascade = "face.xml"
 eye_cascade = "eye.xml"
 nose_cascade = "nose.xml"
@@ -51,7 +53,7 @@ for (x, y, w, h) in faces:
     
     mouth = detect_objs(face_copy, obj_type="mouth")[0:1]
     for (ex, ey , ew, eh) in mouth:
-        cv2.line(face_copy, (ex, ey + eh / 2), (ex + ew, ey + eh / 2), (0,0,0), 18)
+        cv2.line(face_copy, (ex, ey + eh / 2), (ex + ew, ey + eh / 2), (0,0,0), 12)
 
     to_be_blurred = image[y:y+h, x:x+w]
     
@@ -66,6 +68,4 @@ for (x, y, w, h) in faces:
           if math.sqrt( (x1 - circle_center[1]) ** 2 + (y1 - circle_center[0]) ** 2 ) < radius:
              image[y1][x1] = to_be_blurred[y1-y, x1-x]
      
-
-cv2.imshow("Face", image)
-cv2.waitKey(0)
+cv2.imwrite(outputImagePath, image)
