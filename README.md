@@ -9,10 +9,10 @@ Usage:
 python npc_generator.py person.jpg npc_output.jpg
 ```
 
-Before:
+Before:  
 ![](examples/person.jpg)
 
-After:
+After:  
 ![](examples/npc.jpg)
 
 
